@@ -1,12 +1,12 @@
 # Blog API
 
-This is a sample application showing how to use grape to create a simple API using entities. 
+This is an example application showing how to use [grape](https://github.com/intridea/grape) to create a simple API using entities. 
 This sample show cases how to create a simple API without authentication, caching, custom 
 errors and such other things to build a robust public API.
 
 I wrote the sample because I was unable to find a sample to cover the basics of grape.
 
-## Requirements
+## Environment
 
 The sample was developed using the following software. If your software is different, the 
 sample may still work, but there is no guarantee. 
