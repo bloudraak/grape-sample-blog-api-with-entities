@@ -30,6 +30,12 @@ Create and migrate the database
 rake db:migrate
 ```
 
+Seed the database
+
+```bash
+rake db:seed
+```
+
 ## Running the sample
 
 You can run the server using the built-in rails server
