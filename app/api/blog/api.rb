@@ -4,19 +4,25 @@ module Blog
 
   class API < Grape::API
   
+    # default format if no accept header is specified
+    format :json
+  
     resource :weblogs do
     
       get do
-        Weblog.all
+        @weblogs = Weblog.all
+        present @weblogs, with: Blog::Entities::Weblog
       end
       
       get ':id' do
-        Weblog.find(params[:id])
+        @weblog = Weblog.find(params[:id])
+        present @weblog, with: Blog::Entities::Weblog
       end
       
       get ':id/posts' do
-        weblog = Weblog.find(params[:id])
-        weblog.posts
+        @weblog = Weblog.find(params[:id])
+        @posts = @weblog.posts
+        present @posts, with: Blog::Entities::Post
       end
       
       post ':id/posts' do
@@ -27,7 +33,7 @@ module Blog
         @weblog.posts << @post
         
         status 201
-        @post
+        present @post, with: Blog::Entities::Post
       end
       
       delete ':id/posts' do
@@ -42,7 +48,7 @@ module Blog
         @weblog.save 
         
         status 201
-        @weblog
+        present @weblog, with: Blog::Entities::Weblog
       end
       
       put ':id' do
@@ -51,7 +57,7 @@ module Blog
         @weblog.description = params[:description] if params[:description]
         @weblog.save
         
-        @weblog
+        present @weblog, with: Blog::Entities::Weblog
       end
       
       delete do
@@ -67,16 +73,19 @@ module Blog
     resource :posts do
     
       get do
-        Post.all
+        @posts = Post.all
+        present @posts, with: Blog::Entities::Post
       end
       
       get ':id' do
-        Post.find(params[:id])
+        @post = Post.find(params[:id])
+        present @post, with: Blog::Entities::Post
       end
       
       get ':id/comments' do
         @post = Post.find(params[:id])
-        @post.comments
+        @comments = @post.comments
+        present @comments, with: Blog::Entities::Comment
       end
       
       delete ':id/comments' do
@@ -92,7 +101,7 @@ module Blog
         @post.comments << @comment
         
         status 201
-        @comment
+        present @comment, with: Blog::Entities::Comment
       end
       
       delete ':id' do
@@ -104,8 +113,8 @@ module Blog
         @post.title = params[:title] if params[:title]
         @post.body = params[:body] if params[:body]
         @post.save
-        
-        @post
+       
+        present @post, with: Blog::Entities::Post
       end
       
       delete do
@@ -116,18 +125,21 @@ module Blog
     
     resource :comments do
       get do
-        Comment.all
+        @comments = Comment.all
+        present @comments, with: Blog::Entities::Comment
       end
       
       get ':id' do
-        Comment.find(params[:id])
+        @comment = Comment.find(params[:id])
+        present @comment, with: Blog::Entities::Comment
       end
       
       put ':id' do
         @comment = Comment.find(params[:id])
         @comment.name = params[:name] if params[:name]
         @comment.body = params[:body] if params[:body]
-        @comment
+        
+        present @comment, with: Blog::Entities::Comment
       end
       
       delete ':id' do

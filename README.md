@@ -1,8 +1,8 @@
 # Blog API
 
-This is a sample application showing how to use grape to create a simple API. This sample
-show cases how to create a simple API without authentication, caching, custom errors, 
-entities and such other things to build a robust public API.
+This is a sample application showing how to use grape to create a simple API using entities. 
+This sample show cases how to create a simple API without authentication, caching, custom 
+errors and such other things to build a robust public API.
 
 I wrote the sample because I was unable to find a sample to cover the basics of grape.
 
