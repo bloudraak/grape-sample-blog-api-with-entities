@@ -1,7 +1,9 @@
 # Blog API
 
-This is an example application showing how to use [grape](https://github.com/intridea/grape) to create a simple API using entities. 
-This sample show cases how to create a simple API without authentication, caching, custom 
+This is an example application showing how to use
+[grape](https://github.com/intridea/grape) to create a simple API using
+entities from the newly-extracted grape-entity gem.  This sample show
+cases how to create a simple API without authentication, caching, custom
 errors and such other things to build a robust public API.
 
 I wrote the sample because I was unable to find a sample to cover the basics of grape.
@@ -14,7 +16,8 @@ sample may still work, but there is no guarantee.
 1. Rails 3.2.8
 2. ruby 1.9.3p194
 3. OS X 10.8.1 (aka Mountain Lion)
-4. Grape (0.2.1) 
+4. Grape (0.2.6) 
+5. Grape Entity (0.2.0) 
 
 ## Setup
 
